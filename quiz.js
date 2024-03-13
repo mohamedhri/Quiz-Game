@@ -1,5 +1,5 @@
 
-const quizData = [
+const qsmData = [
  {
   question: "Quelle affirmation est vraie à propos de Java?",
   a: "Java est un langage de programmation dépendant de la séquence",
@@ -42,3 +42,5 @@ const quizData = [
   correct: "d"
  }
 ];
+
+
