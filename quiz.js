@@ -1,5 +1,5 @@
 
-const qsmData = [
+const quizData = [
  {
   question: "Quelle affirmation est vraie à propos de Java?",
   a: "Java est un langage de programmation dépendant de la séquence",
@@ -42,5 +42,23 @@ const qsmData = [
   correct: "d"
  }
 ];
+
+const quiz = document.querySelector(".quiz-body");
+const answerEl = document.querySelectorAll(".answer");
+const questionEl = document.getElementById("question");
+const footerEl = document.querySelector(".quiz-footer");
+const quizDetailEl = document.querySelector(".quiz-details");
+const liEl = document.querySelector("ul li");
+
+const a_txt = document.getElementById("r1");
+const b_txt = document.getElementById("r2");
+const c_txt = document.getElementById("r3");
+const d_txt = document.getElementById("r4");
+const btnSubmit = document.getElementById("btn");
+
+let currentQuiz = 0;
+let score = 0;
+
+
 
 
