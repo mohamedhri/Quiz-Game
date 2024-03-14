@@ -54,11 +54,107 @@ const a_txt = document.getElementById("r1");
 const b_txt = document.getElementById("r2");
 const c_txt = document.getElementById("r3");
 const d_txt = document.getElementById("r4");
-const btnSubmit = document.getElementById("btn");
+const btnNext = document.getElementById("btn");
 
 let currentQuiz = 0;
 let score = 0;
 
 
+function deselectAnswers() {
+    answerEl.forEach((answerEl) => {
+     answerEl.checked = false;
+    });
+   }
+
+
+function loadQuiz() {
+    deselectAnswers();
+    const currentQuizData = quizData[currentQuiz];
+    questionEl.innerText = currentQuizData.question;
+    a_txt.innerText = currentQuizData.a;
+    b_txt.innerText = currentQuizData.b;
+    c_txt.innerText = currentQuizData.c;
+    d_txt.innerText = currentQuizData.d;
+    quizDetailEl.innerHTML = `<p>${currentQuiz + 1} of ${quizData.length}</p>`;
+   }
+
+loadQuiz();
+
+    
+/* /* 
+function getSelected() {
+    let answer;
+    answerEl.forEach((answerEl) => {
+        if (answerEl.checked) {
+            answer = answerEl.id;
+            const selectedOption = answerEl.parentElement;
+            const correctAnswer = quizData[currentQuiz].correct;
+            if (answer === correctAnswer) {
+                selectedOption.classList.add("correct");
+                console.log(worked);
+            } else {
+                selectedOption.classList.add("incorrect");
+                // Highlight the correct answer
+                document.getElementById(correctAnswer).classList.add("correct");
+            }
+        }
+    });
+    return answer;
+} */
+
+
+function getSelected() {
+    let answer;
+    answerEl.forEach((answerEls) => {
+     if (answerEls.checked) {
+      answer = answerEls;
+     }
+    });
+    return answer;
+    
+   }
+
+   btnNext.addEventListener("click", function () {
+
+    let answers = getSelected();
+   
+    
+     if (answers.id === quizData[currentQuiz].correct) {
+        console.log(answers);
+        
+      score++;
+              
+      answers.style.color="red";
+
+     /*  alert("Correct answer!"); */
+     setInterval(() => {
+      },2000);
+
+    } else {
+      //alert("Wrong answer!"); */
+    }
+
+     
+    nextQuestion();
+    }
+   );
+
+
+ 
+
+   
+
+function nextQuestion() {
+    currentQuiz++;
+   
+    if (currentQuiz < quizData.length) {
+     loadQuiz();
+    } else {
+     quiz.innerHTML = `<h2>Vous répondez à  ${score}/${quizData.length} question correctly</h2>
+       <button type="button" onclick="location.reload()" style="background-color: #111; font-color=white" >Restart</button>
+       `;
+     footerEl.style.display = "none";
+    }
+   } 
 
 
