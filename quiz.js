@@ -49,6 +49,7 @@ const questionEl = document.getElementById("question");
 const footerEl = document.querySelector(".quiz-footer");
 const quizDetailEl = document.querySelector(".quiz-details");
 const liEl = document.querySelector("ul li");
+const ss= document.getElementById("sc")
 
 const a_txt = document.getElementById("r1");
 const b_txt = document.getElementById("r2");
@@ -65,6 +66,7 @@ function deselectAnswers() {
      answerEl.checked = false;
     });
    }
+ 
 
 
 function loadQuiz() {
@@ -101,7 +103,9 @@ function getSelected() {
     });
     return answer;
 } */
-
+function updateScore(){
+        ss.textContent = score;
+}
 
 function getSelected() {
     let answer;
@@ -120,7 +124,9 @@ function getSelected() {
         const correctAnswer = quizData[currentQuiz].correct;
         if (selectedAnswer.id === correctAnswer) {
             selectedAnswer.parentElement.classList.add("correct");
-            score++;
+            score+=10;
+            updateScore();
+            
         } else {
             selectedAnswer.parentElement.classList.add("incorrect");
             document.getElementById(correctAnswer).parentElement.classList.add("correct");
@@ -142,12 +148,17 @@ function nextQuestion() {
     answerEl.forEach(answerEl => {
         answerEl.parentElement.classList.remove("correct", "incorrect");
     });
-    currentQuiz++;
+    currentQuiz++
+
+    /* if(answerEl == quizData[currentQuiz].correctAnswer){
+        score +=10;
+        ss.innerText= score;
+    } */
    
     if (currentQuiz < quizData.length) {
      loadQuiz();
     } else {
-     quiz.innerHTML = `<h2>Vous répondez à  ${score}/${quizData.length} question correctly</h2>
+     quiz.innerHTML = `<h2>Vous répondez à  ${score}/${100} question correctly</h2>
        <button type="button" onclick="location.reload()" style="background-color: #111; font-color=white" >Restart</button>
        `;
      footerEl.style.display = "none";
