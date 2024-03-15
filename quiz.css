@@ -178,3 +178,15 @@ span{
  
 }
 
+@media screen and (max-width: 600px) {
+  
+  .quiz-header {
+    padding: 12px 20px; 
+  }
+
+  .quiz-body h2 {
+    font-size: 18px; 
+  }
+
+}
+
