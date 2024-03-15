@@ -50,6 +50,7 @@ const footerEl = document.querySelector(".quiz-footer");
 const quizDetailEl = document.querySelector(".quiz-details");
 const liEl = document.querySelector("ul li");
 const ss= document.getElementById("sc")
+const td=document.getElementById("timer-left")
 
 const a_txt = document.getElementById("r1");
 const b_txt = document.getElementById("r2");
@@ -59,6 +60,7 @@ const btnNext = document.getElementById("btn");
 
 let currentQuiz = 0;
 let score = 0;
+let timeLeft = 12; 
 
 
 function deselectAnswers() {
@@ -106,6 +108,22 @@ function getSelected() {
 function updateScore(){
         ss.textContent = score;
 }
+/* function updateTimer (){
+    td.textContent = timeLeft;
+}
+ */
+/* function startTimer() {
+    const timerInterval = setInterval(() => {
+        timeLeft--; 
+        updateTimer(); 
+
+        if (timeLeft === 0) {
+            clearInterval(timerInterval); 
+            nextQuestion(); /
+        }
+    }, 1000); 
+} */
+
 
 function getSelected() {
     let answer;
@@ -134,6 +152,7 @@ function getSelected() {
     }
 
     setTimeout(nextQuestion, 1000);
+    
 
     
 });
@@ -158,7 +177,8 @@ function nextQuestion() {
     if (currentQuiz < quizData.length) {
      loadQuiz();
     } else {
-     quiz.innerHTML = `<h2>Vous répondez à  ${score}/${100} question correctly</h2>
+        score1 = score/10;
+      quiz.innerHTML = `<h2>Félicitation <br><br>Vous répondez à  ${score1}/${5} question correctly</h2>
        <button type="button" onclick="location.reload()" style="background-color: #111; font-color=white" >Restart</button>
        `;
      footerEl.style.display = "none";
