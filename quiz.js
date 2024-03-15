@@ -113,31 +113,24 @@ function getSelected() {
     return answer;
     
    }
+   btnNext.addEventListener("mouseup", function () {
+    let selectedAnswer = getSelected();
 
-   btnNext.addEventListener("click", function () {
+    if (selectedAnswer) {
+        const correctAnswer = quizData[currentQuiz].correct;
+        if (selectedAnswer.id === correctAnswer) {
+            selectedAnswer.parentElement.classList.add("correct");
+            score++;
+        } else {
+            selectedAnswer.parentElement.classList.add("incorrect");
+            document.getElementById(correctAnswer).parentElement.classList.add("correct");
+        }
+    }
 
-    let answers = getSelected();
-   
+    setTimeout(nextQuestion, 1000);
+
     
-     if (answers.id === quizData[currentQuiz].correct) {
-        console.log(answers);
-        
-      score++;
-              
-      answers.style.color="red";
-
-     /*  alert("Correct answer!"); */
-     setInterval(() => {
-      },2000);
-
-    } else {
-      //alert("Wrong answer!"); */
-    }
-
-     
-    nextQuestion();
-    }
-   );
+});
 
 
  
@@ -145,6 +138,10 @@ function getSelected() {
    
 
 function nextQuestion() {
+
+    answerEl.forEach(answerEl => {
+        answerEl.parentElement.classList.remove("correct", "incorrect");
+    });
     currentQuiz++;
    
     if (currentQuiz < quizData.length) {
